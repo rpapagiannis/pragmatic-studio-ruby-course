@@ -76,4 +76,23 @@ class Game
   def sorted_players
     @players.sort_by { |player| player.score }.reverse # rubocop:disable Style/SymbolProc
   end
+
+  def load_players(from_file)
+    File.readlines(from_file, chomp: true).each do |line|
+      name, health = line.split(',')
+      player = Player.new(name, health.to_i)
+      add_player(player)
+    end
+  end
+
+  def save_high_scores(to_file = 'high_scores_txt')
+    File.open(to_file, 'w') do |file|
+      file.puts "#{@title} High Scores:"
+      sorted_players.each do |player|
+        name = player.name.ljust(20, '.')
+        points = player.score.round.to_s.rjust(5)
+        file.puts "#{name}#{points}"
+      end
+    end
+  end
 end

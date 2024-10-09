@@ -3,16 +3,20 @@
 require_relative 'lib/studio_game/game'
 require_relative 'lib/studio_game/player'
 
-player1 = Player.new('finn', 60)
-player2 = Player.new('lucy', 90)
-player3 = Player.new('jase', 100)
-player4 = Player.new('alex', 125)
+# player1 = Player.new('finn', 60)
+# player2 = Player.new('lucy', 90)
+# player3 = Player.new('jase', 100)
+# player4 = Player.new('alex', 125)
 
-game = Game.new('Winner Takes All')
-game.add_player(player1)
-game.add_player(player2)
-game.add_player(player3)
-game.add_player(player4)
+# # game = Game.new('Winner Takes All')
+# # game.add_player(player1)
+# # game.add_player(player2)
+# # game.add_player(player3)
+# # game.add_player(player4)
+
+game = Game.new('Guardians')
+players_file = File.join(__dir__, 'players.csv')
+game.load_players(ARGV.shift || players_file)
 
 loop do
   print "\nHow many rounds would you like to play? "
@@ -28,6 +32,8 @@ loop do
     "\nEnter the number of rounds you'd like to play or quit"
   end
 end
+
+game.save_high_scores
 
 # player5 = Player.new('alvin', 65)
 # player6 = Player.new('simon', 95)
