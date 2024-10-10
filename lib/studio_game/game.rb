@@ -53,7 +53,7 @@ class Game
     rand(1..6)
   end
 
-  def print_stats # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+  def print_stats # rubocop:disable Metrics/MethodLength
     puts "\n#{@title} Game Stats:"
     puts '-' * 30
     puts sorted_players
@@ -67,9 +67,7 @@ class Game
 
     puts "\nHigh Scores:"
     sorted_players.each do |player|
-      name = player.name.ljust(20, '.')
-      points = player.score.round.to_s.rjust(5)
-      puts "#{name}#{points}"
+      puts high_score_entry(player)
     end
   end
 
@@ -89,10 +87,14 @@ class Game
     File.open(to_file, 'w') do |file|
       file.puts "#{@title} High Scores:"
       sorted_players.each do |player|
-        name = player.name.ljust(20, '.')
-        points = player.score.round.to_s.rjust(5)
-        file.puts "#{name}#{points}"
+        file.puts high_score_entry(player)
       end
     end
+  end
+
+  def high_score_entry(player)
+    name = player.name.ljust(20, '.')
+    points = player.score.round.to_s.rjust(5)
+    "#{name}#{points}"
   end
 end
