@@ -5,6 +5,11 @@ class Player
   attr_reader :health, :found_treasures
   attr_accessor :name
 
+  def self.from_csv(line)
+    name, health = line.split(',')
+    Player.new(name, health.to_i)
+  end
+
   def initialize(name, health = 100)
     @name = name.capitalize
     @health = health
