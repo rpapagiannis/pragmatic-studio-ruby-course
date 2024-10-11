@@ -80,6 +80,9 @@ class Game
       player = Player.from_csv(line)
       add_player(player)
     end
+  rescue Errno::ENOENT
+    puts "Looks like the #{from_file} file doesn't exist friend."
+    exit 1
   end
 
   def save_high_scores(to_file = 'high_scores_txt')

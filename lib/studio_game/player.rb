@@ -7,7 +7,10 @@ class Player
 
   def self.from_csv(line)
     name, health = line.split(',')
-    Player.new(name, health.to_i)
+    Player.new(name, Integer(health))
+  rescue ArgumentError
+    puts "#{health} is just no valid health value love, I'll fall back to the default 100."
+    Player.new(name)
   end
 
   def initialize(name, health = 100)
