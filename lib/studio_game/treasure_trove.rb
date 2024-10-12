@@ -1,24 +1,26 @@
 # frozen_string_literal: true
 
-# treasure trove module
-module TreasureTrove
-  Treasure = Data.define(:name, :points)
+module StudioGame
+  # treasure trove module
+  module TreasureTrove
+    Treasure = Data.define(:name, :points)
 
-  TREASURES = [
-    Treasure.new('pie', 10),
-    Treasure.new('coin', 25),
-    Treasure.new('flute', 50),
-    Treasure.new('compass', 65),
-    Treasure.new('key', 80),
-    Treasure.new('crown', 90),
-    Treasure.new('star', 100)
-  ].freeze
+    TREASURES = [
+      Treasure.new('pie', 10),
+      Treasure.new('coin', 25),
+      Treasure.new('flute', 50),
+      Treasure.new('compass', 65),
+      Treasure.new('key', 80),
+      Treasure.new('crown', 90),
+      Treasure.new('star', 100)
+    ].freeze
 
-  def self.random_treasure
-    TREASURES.sample
-  end
+    def self.random_treasure
+      TREASURES.sample
+    end
 
-  def self.treasure_items
-    TREASURES.map { |treasure| "A #{treasure.name} is worth #{treasure.points} points" }
+    def self.treasure_items
+      TREASURES.map { |treasure| "A #{treasure.name} is worth #{treasure.points} points" }
+    end
   end
 end

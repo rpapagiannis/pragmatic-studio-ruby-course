@@ -16,12 +16,12 @@ require_relative 'lib/studio_game/berserk_player'
 # # game.add_player(player3)
 # # game.add_player(player4)
 
-game = Game.new('Guardians')
+game = StudioGame::Game.new('Guardians')
 players_file = File.join(__dir__, 'players.csv')
 game.load_players(ARGV.shift || players_file)
-clumsy = ClumsyPlayer.new('klutz', 85)
+clumsy = StudioGame::ClumsyPlayer.new('klutz', 85)
 game.add_player(clumsy)
-berserker = BerserkPlayer.new('berserker', 50)
+berserker = StudioGame::BerserkPlayer.new('berserker', 50)
 game.add_player(berserker)
 
 loop do
