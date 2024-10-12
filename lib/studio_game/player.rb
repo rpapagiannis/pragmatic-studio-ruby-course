@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
+require_relative 'playable'
+
 # player class
 class Player
-  attr_reader :health, :found_treasures
-  attr_accessor :name
+  include Playable
+  attr_reader :found_treasures
+  attr_accessor :name, :health
 
   def self.from_csv(line)
     name, health = line.split(',')
@@ -21,14 +24,6 @@ class Player
 
   def to_s
     "I'm #{@name} with a health = #{@health}, points = #{points}, and score = #{score}"
-  end
-
-  def drain
-    @health -= 10
-  end
-
-  def boost
-    @health += 15
   end
 
   def score

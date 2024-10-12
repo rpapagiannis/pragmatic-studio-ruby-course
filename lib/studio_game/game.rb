@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 require_relative 'treasure_trove'
+require_relative 'auditable'
 
 # game class
 class Game
+  include Auditable
   attr_reader :title, :players
 
   def initialize(title)
@@ -50,7 +52,9 @@ class Game
   end
 
   def roll_die
-    rand(1..6)
+    number = rand(1..6)
+    audit(number)
+    number
   end
 
   def print_stats # rubocop:disable Metrics/MethodLength
