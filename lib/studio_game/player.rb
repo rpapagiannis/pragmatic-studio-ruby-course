@@ -9,7 +9,7 @@ class Player
     name, health = line.split(',')
     Player.new(name, Integer(health))
   rescue ArgumentError
-    puts "#{health} is just no valid health value love, I'll fall back to the default 100."
+    puts "#{health} is just no valid health value love."
     Player.new(name)
   end
 

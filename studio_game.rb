@@ -2,6 +2,8 @@
 
 require_relative 'lib/studio_game/game'
 require_relative 'lib/studio_game/player'
+require_relative 'lib/studio_game/clumsy_player'
+require_relative 'lib/studio_game/berserk_player'
 
 # player1 = Player.new('finn', 60)
 # player2 = Player.new('lucy', 90)
@@ -17,6 +19,10 @@ require_relative 'lib/studio_game/player'
 game = Game.new('Guardians')
 players_file = File.join(__dir__, 'players.csv')
 game.load_players(ARGV.shift || players_file)
+clumsy = ClumsyPlayer.new('klutz', 85)
+game.add_player(clumsy)
+berserker = BerserkPlayer.new('berserker', 50)
+game.add_player(berserker)
 
 loop do
   print "\nHow many rounds would you like to play? "
